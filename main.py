@@ -1,18 +1,27 @@
-# Check if two words are anagrams 
+# Read text from a file, and count the occurence of words in that text
 # Example:
-# find_anagrams("hello", "check") --> False
-# find_anagrams("below", "elbow") --> True
+# count_words("The cake is done. It is a big cake!") 
+# --> {"cake":2, "big":1, "is":2, "the":1, "a":1, "it":1}
 
 
-def find_anagrams(str1, str2):
-    # [assignment] Add your code here
 
-   str1_anagrams = sorted(str1)
-   str2_anagrams = sorted(str2)
+def read_file_content(filename):
+    with open(filename) as f:
+        file = f.read()
+    return  file
 
-   if(str1_anagrams == str2_anagrams):
-       return True
-   else:
-        return False
+    
+def count_words():
+    text = read_file_content("./story.txt")
+    
+    words = text.split()
+    count = dict()
 
-print(find_anagrams("listen", "silent"))
+    for word in words:
+         if word in count:
+            count[word] += 1
+         else:
+            count[word] = 1
+
+    return count
+print(count_words())
